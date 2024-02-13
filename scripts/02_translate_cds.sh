@@ -39,7 +39,7 @@ do
     if [ ${#batchFileNames[@]} -eq $batchSize ]; then
       for batchFile in ${batchFileNames[@]} ; do
         #sleep 10 &
-        ./Scripts/02_01_single_transdecoder_run.sh $batchFile  &
+        ./scripts/02_01_single_transdecoder_run.sh $batchFile  &
       done
       wait
       batchFileNames=()
