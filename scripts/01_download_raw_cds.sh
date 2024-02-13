@@ -26,12 +26,12 @@
 
     # These lines print the file speciesCode variable information to the console so you can see it:
     echo __________________________________________________
-    echo Dowloading data from the url: $cdsUrl
-    echo Downloading the zipped data to $zipFn
+    #echo Dowloading data from the url: $cdsUrl
+    #echo Downloading the zipped data to $zipFn
     echo wget $cdsUrl -O $zipFn
 
     # This sends the download url to wget, unzips the downloaded file, and respeciesCodes it to the speciesCode you indicated in the input file.
-    wget $cdsUrl -O $zipFn
+    #wget $cdsUrl -O $zipFn
 
     #if [[ $zipFn == *.zip ]]
       #then
