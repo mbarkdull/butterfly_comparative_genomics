@@ -46,6 +46,4 @@ do
     fi
   done < "cdsChunkList.txt"
 
-
-
-
+ done
