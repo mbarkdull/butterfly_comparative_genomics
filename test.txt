@@ -1,0 +1,10 @@
+Anthocharis cardamines,anca,https://ftp.ensembl.org/pub/rapid-release/species/Anthocharis_cardamines/GCA_905404175.1/ensembl/geneset/2021_11/Anthocharis_cardamines-GCA_905404175.1-2021_11-cds.fa.gz
+Aporia crataegi,apcr,https://ftp.ensembl.org/pub/rapid-release/species/Aporia_crataegi/GCA_912999735.1/ensembl/geneset/2021_11/Aporia_crataegi-GCA_912999735.1-2021_11-cds.fa.gz
+Aricia artaxerxes,arar,https://ftp.ensembl.org/pub/rapid-release/species/Aricia_artaxerxes/GCA_937612035.1/ensembl/geneset/2022_06/Aricia_artaxerxes-GCA_937612035.1-2022_06-cds.fa.gz
+Bicyclus anynana,bian,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/947/172/395/GCF_947172395.1_ilBicAnyn1.1/GCF_947172395.1_ilBicAnyn1.1_cds_from_genomic.fna.gz
+Boloria selene,bose,https://ftp.ensembl.org/pub/rapid-release/species/Boloria_selene/GCA_905231865.2/braker/geneset/2021_12/Boloria_selene-GCA_905231865.2-2021_12-cds.fa.gz
+Brenthis ino,brin,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/921/882/275/GCA_921882275.1_SP_BI_364.v2_0/GCA_921882275.1_SP_BI_364.v2_0_cds_from_genomic.fna.gz
+Calycopis cecrops,cace,http://download.lepbase.org/v4/sequence/Calycopis_cecrops_v1.1_-_cds.fa.gz
+Celastrina argiolus,caar,https://ftp.ensembl.org/pub/rapid-release/species/Celastrina_argiolus/GCA_905187575.1/ensembl/geneset/2021_05/Celastrina_argiolus-GCA_905187575.1-2021_05-cds.fa.gz
+Colias crocea,cocr,https://ftp.ensembl.org/pub/rapid-release/species/Colias_croceus/GCA_905220415.1/ensembl/geneset/2021_05/Colias_croceus-GCA_905220415.1-2021_05-cds.fa.gz
+Danaus chrysippus,dach,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/916/720/795/GCA_916720795.1_Dchry2.2/GCA_916720795.1_Dchry2.2_cds_from_genomic.fna.gz
