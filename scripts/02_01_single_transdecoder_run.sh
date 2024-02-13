@@ -6,6 +6,7 @@
 while read -r line;
 do
 	export cdsFileName=$line
+	echo ________________
 	pwd
 	cp ./01_RawCDSFiles/$cdsFileName 02_translated_cds_files
 	cd 02_translated_cds_files
