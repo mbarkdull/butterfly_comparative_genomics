@@ -1,6 +1,6 @@
 species,speciesCode,downloadLink
 Anthocharis cardamines,anca,https://ftp.ensembl.org/pub/rapid-release/species/Anthocharis_cardamines/GCA_905404175.1/ensembl/geneset/2021_11/Anthocharis_cardamines-GCA_905404175.1-2021_11-cds.fa.gz
-Aporia crataegi,apcra,https://ftp.ensembl.org/pub/rapid-release/species/Aporia_crataegi/GCA_912999735.1/ensembl/geneset/2021_11/Aporia_crataegi-GCA_912999735.1-2021_11-cds.fa.gz
+Aporia crataegi,apcr,https://ftp.ensembl.org/pub/rapid-release/species/Aporia_crataegi/GCA_912999735.1/ensembl/geneset/2021_11/Aporia_crataegi-GCA_912999735.1-2021_11-cds.fa.gz
 Aricia artaxerxes,arar,https://ftp.ensembl.org/pub/rapid-release/species/Aricia_artaxerxes/GCA_937612035.1/ensembl/geneset/2022_06/Aricia_artaxerxes-GCA_937612035.1-2022_06-cds.fa.gz
 Bicyclus anynana,bian,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/947/172/395/GCF_947172395.1_ilBicAnyn1.1/GCF_947172395.1_ilBicAnyn1.1_cds_from_genomic.fna.gz
 Boloria selene,bose,https://ftp.ensembl.org/pub/rapid-release/species/Boloria_selene/GCA_905231865.2/braker/geneset/2021_12/Boloria_selene-GCA_905231865.2-2021_12-cds.fa.gz
@@ -51,4 +51,3 @@ Vanessa atalanta,vaat,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/147/765/G
 Vanessa cardui,vaca,http://download.lepbase.org/v4/sequence/Vanessa_cardui_Vc_v1.cds.fa.gz
 Vanessa tameamea,vata,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/938/995/GCF_002938995.1_ASM293899v1/GCF_002938995.1_ASM293899v1_cds_from_genomic.fna.gz
 Zerene cesonia,zece,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/012/273/895/GCF_012273895.1_Zerene_cesonia_1.1/GCF_012273895.1_Zerene_cesonia_1.1_cds_from_genomic.fna.gz
-Hestina assimilis,heas,
