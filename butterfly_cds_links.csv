@@ -1,0 +1,54 @@
+species,speciesCode,downloadLink
+Anthocharis cardamines,anca,https://ftp.ensembl.org/pub/rapid-release/species/Anthocharis_cardamines/GCA_905404175.1/ensembl/geneset/2021_11/Anthocharis_cardamines-GCA_905404175.1-2021_11-cds.fa.gz
+Aporia crataegi,apcra,https://ftp.ensembl.org/pub/rapid-release/species/Aporia_crataegi/GCA_912999735.1/ensembl/geneset/2021_11/Aporia_crataegi-GCA_912999735.1-2021_11-cds.fa.gz
+Aricia artaxerxes,arar,https://ftp.ensembl.org/pub/rapid-release/species/Aricia_artaxerxes/GCA_937612035.1/ensembl/geneset/2022_06/Aricia_artaxerxes-GCA_937612035.1-2022_06-cds.fa.gz
+Bicyclus anynana,bian,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/947/172/395/GCF_947172395.1_ilBicAnyn1.1/GCF_947172395.1_ilBicAnyn1.1_cds_from_genomic.fna.gz
+Boloria selene,bose,https://ftp.ensembl.org/pub/rapid-release/species/Boloria_selene/GCA_905231865.2/braker/geneset/2021_12/Boloria_selene-GCA_905231865.2-2021_12-cds.fa.gz
+Brenthis ino,brin,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/921/882/275/GCA_921882275.1_SP_BI_364.v2_0/GCA_921882275.1_SP_BI_364.v2_0_cds_from_genomic.fna.gz
+Calycopis cecrops,cace,http://download.lepbase.org/v4/sequence/Calycopis_cecrops_v1.1_-_cds.fa.gz
+Celastrina argiolus,caar,https://ftp.ensembl.org/pub/rapid-release/species/Celastrina_argiolus/GCA_905187575.1/ensembl/geneset/2021_05/Celastrina_argiolus-GCA_905187575.1-2021_05-cds.fa.gz
+Colias crocea,cocr,https://ftp.ensembl.org/pub/rapid-release/species/Colias_croceus/GCA_905220415.1/ensembl/geneset/2021_05/Colias_croceus-GCA_905220415.1-2021_05-cds.fa.gz
+Danaus chrysippus,dach,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/916/720/795/GCA_916720795.1_Dchry2.2/GCA_916720795.1_Dchry2.2_cds_from_genomic.fna.gz
+Danaus plexippus,dapl,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/731/565/GCF_009731565.1_Dplex_v4/GCF_009731565.1_Dplex_v4_cds_from_genomic.fna.gz
+Erebia ligea,erli,https://ftp.ensembl.org/pub/rapid-release/species/Erebia_ligea/GCA_917051295.2/braker/geneset/2022_03/Erebia_ligea-GCA_917051295.2-2022_03-cds.fa.gz
+Euphydryas editha,eued,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/933/666/425/GCA_933666425.1_Euphydryas_editha/GCA_933666425.1_Euphydryas_editha_cds_from_genomic.fna.gz
+Fabriciana adippe,faad,https://ftp.ensembl.org/pub/rapid-release/species/Fabriciana_adippe/GCA_905404265.1/ensembl/geneset/2021_11/Fabriciana_adippe-GCA_905404265.1-2021_11-cds.fa.gz
+Heliconius erato lativitta,hela,http://download.lepbase.org/v4/sequence/Heliconius_erato_lativitta_v1_-_cds.fa.gz
+Heliconius erato demophoon,hede,http://download.lepbase.org/v4/sequence/Heliconius_erato_demophoon_v1_-_cds.fa.gz
+Heliconius melpomene melpomene,heme,http://download.lepbase.org/v4/sequence/Heliconius_melpomene_melpomene_Hmel1_-_cds.fa.gz
+Iphiclides podalirius,ippo,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/933/534/255/GCA_933534255.1_IP_504.v2_0/GCA_933534255.1_IP_504.v2_0_cds_from_genomic.fna.gz
+Junonia coenia,juco,http://download.lepbase.org/v4/sequence/Junonia_coenia_Jc_v2.cds.fa.gz
+Leptidea sinapis,lesi,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/404/315/GCF_905404315.1_ilLepSina1.1/GCF_905404315.1_ilLepSina1.1_cds_from_genomic.fna.gz
+Lerema accius,leac,http://download.lepbase.org/v4/sequence/Lerema_accius_v1.1_-_cds.fa.gz
+Limenitis camilla,lica,https://ftp.ensembl.org/pub/rapid-release/species/Limenitis_camilla/GCA_905147385.1/ensembl/geneset/2021_11/Limenitis_camilla-GCA_905147385.1-2021_11-cds.fa.gz
+Lycaena phlaeas,lyph,https://ftp.ensembl.org/pub/rapid-release/species/Lycaena_phlaeas/GCA_905333005.1/ensembl/geneset/2021_06/Lycaena_phlaeas-GCA_905333005.1-2021_06-cds.fa.gz
+Lysandra coridon,lyco,https://ftp.ensembl.org/pub/rapid-release/species/Lysandra_coridon/GCA_905220515.1/ensembl/geneset/2021_11/Lysandra_coridon-GCA_905220515.1-2021_11-cds.fa.gz
+Lysandra bellargus,lybe,https://ftp.ensembl.org/pub/rapid-release/species/Lysandra_bellargus/GCA_905333045.1/ensembl/geneset/2021_11/Lysandra_bellargus-GCA_905333045.1-2021_11-cds.fa.gz
+Maniola jurtina,maju,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/333/055/GCF_905333055.1_ilManJurt1.1/GCF_905333055.1_ilManJurt1.1_cds_from_genomic.fna.gz
+Melanargia galathea,mega,https://ftp.ensembl.org/pub/rapid-release/species/Melanargia_galathea/GCA_920104075.1/ensembl/geneset/2022_01/Melanargia_galathea-GCA_920104075.1-2022_01-cds.fa.gz
+Melitaea athalia,meat,https://ftp.ensembl.org/pub/rapid-release/species/Mellicta_athalia/GCA_905220545.1/ensembl/geneset/2021_06/Mellicta_athalia-GCA_905220545.1-2021_06-cds.fa.gz
+Melitaea cinxia,meci,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/220/565/GCF_905220565.1_ilMelCinx1.1/GCF_905220565.1_ilMelCinx1.1_cds_from_genomic.fna.gz
+Nymphalis io,nyio,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/147/045/GCF_905147045.1_ilAglIoxx1.1/GCF_905147045.1_ilAglIoxx1.1_cds_from_genomic.fna.gz
+Nymphalis polychloros,nypo,https://ftp.ensembl.org/pub/rapid-release/species/Nymphalis_polychloros/GCA_905220585.1/ensembl/geneset/2021_11/Nymphalis_polychloros-GCA_905220585.1-2021_11-cds.fa.gz
+Ochlodes sylvanus,ocsy,https://ftp.ensembl.org/pub/rapid-release/species/Ochlodes_sylvanus/GCA_905404295.1/ensembl/geneset/2021_11/Ochlodes_sylvanus-GCA_905404295.1-2021_11-cds.fa.gz
+Papilio elwesi,pael,https://figshare.com/ndownloader/files/39129932
+Papilio glaucus,pagl,http://download.lepbase.org/v4/sequence/Papilio_glaucus_v1.1_-_cds.fa.gz
+Papilio machaon,pama,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/912/999/745/GCF_912999745.1_ilPapMach1.1/GCF_912999745.1_ilPapMach1.1_cds_from_genomic.fna.gz
+Papilio polytes,papo,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/836/215/GCF_000836215.1_Ppol_1.0/GCF_000836215.1_Ppol_1.0_cds_from_genomic.fna.gz
+Papilio xuthus,paxu,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/836/235/GCF_000836235.2_Pxut_1.1/GCF_000836235.2_Pxut_1.1_cds_from_genomic.fna.gz
+Pararge aegeria,paae,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/163/445/GCF_905163445.1_ilParAegt1.1/GCF_905163445.1_ilParAegt1.1_cds_from_genomic.fna.gz
+Parnassius apollo,paap,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/907/164/705/GCA_907164705.1_Parnassius_apollo/GCA_907164705.1_Parnassius_apollo_cds_from_genomic.fna.gz
+Phoebis sennae,phse,http://download.lepbase.org/v4/sequence/Phoebis_sennae_v1.1_-_cds.fa.gz
+Pieris brassicae,pibr,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/147/105/GCF_905147105.1_ilPieBrab1.1/GCF_905147105.1_ilPieBrab1.1_cds_from_genomic.fna.gz
+Pieris macdunnoughi,pima,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/905/332/375/GCA_905332375.1_Pmacd_v0.10/GCA_905332375.1_Pmacd_v0.10_cds_from_genomic.fna.gz
+Pieris napi,pina,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/475/465/GCF_905475465.1_ilPieNapi1.2/GCF_905475465.1_ilPieNapi1.2_cds_from_genomic.fna.gz
+Pieris rapae,pira,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/147/795/GCF_905147795.1_ilPieRapa1.1/GCF_905147795.1_ilPieRapa1.1_cds_from_genomic.fna.gz
+Plebejus argus,plar,https://ftp.ensembl.org/pub/rapid-release/species/Plebejus_argus/GCA_905404155.1/ensembl/geneset/2021_11/Plebejus_argus-GCA_905404155.1-2021_11-cds.fa.gz
+Polyommatus icarus,poic,https://ftp.ensembl.org/pub/rapid-release/species/Polyommatus_icarus/GCA_937595015.1/ensembl/geneset/2022_06/Polyommatus_icarus-GCA_937595015.1-2022_06-cds.fa.gz
+Pyrgus malvae,pyma,https://ftp.ensembl.org/pub/rapid-release/species/Pyrgus_malvae/GCA_911387765.1/ensembl/geneset/2021_11/Pyrgus_malvae-GCA_911387765.1-2021_11-cds.fa.gz
+Thymelicus sylvestris,thsy,https://ftp.ensembl.org/pub/rapid-release/species/Thymelicus_sylvestris/GCA_911387775.1/ensembl/geneset/2021_11/Thymelicus_sylvestris-GCA_911387775.1-2021_11-cds.fa.gz
+Vanessa atalanta,vaat,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/905/147/765/GCF_905147765.1_ilVanAtal1.2/GCF_905147765.1_ilVanAtal1.2_cds_from_genomic.fna.gz
+Vanessa cardui,vaca,http://download.lepbase.org/v4/sequence/Vanessa_cardui_Vc_v1.cds.fa.gz
+Vanessa tameamea,vata,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/938/995/GCF_002938995.1_ASM293899v1/GCF_002938995.1_ASM293899v1_cds_from_genomic.fna.gz
+Zerene cesonia,zece,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/012/273/895/GCF_012273895.1_Zerene_cesonia_1.1/GCF_012273895.1_Zerene_cesonia_1.1_cds_from_genomic.fna.gz
+Hestina assimilis,heas,
