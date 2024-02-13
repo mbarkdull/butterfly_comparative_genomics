@@ -16,12 +16,13 @@
     cd ./01_RawCDSFiles
 
     # This tells us what the zipped, downloaded file should be sent to:
-    if [[ $cdsUrl == *.zip ]]
-      then
-        export zipFn=$speciesCode.zip
-      else [[ $cdsUrl == *.gz ]]
-        export zipFn=$speciesCode.gz
-    fi
+    #if [[ $cdsUrl == *.zip ]]
+      #then
+        #export zipFn=$speciesCode.zip
+      #else [[ $cdsUrl == *.gz ]]
+        #export zipFn=$speciesCode.gz
+    #fi
+    export zipFn=$speciesCode.gz
 
     # These lines print the file speciesCode variable information to the console so you can see it:
     echo __________________________________________________
@@ -32,16 +33,16 @@
     # This sends the download url to wget, unzips the downloaded file, and respeciesCodes it to the speciesCode you indicated in the input file.
     wget $cdsUrl -O $zipFn
 
-    if [[ $zipFn == *.zip ]]
-      then
-        unzip -p $zipFn > $cdsFileName
-        echo Unzipping $zipFn to $cdsFileName
-      else [[ $zipFn == *.gz ]]
-        gunzip -c $zipFn > $cdsFileName
-        echo Unzipping $zipFn to $cdsFileName
-    fi
+    #if [[ $zipFn == *.zip ]]
+      #then
+      #  unzip -p $zipFn > $cdsFileName
+      #  echo Unzipping $zipFn to $cdsFileName
+      #else [[ $zipFn == *.gz ]]
+      #  gunzip -c $zipFn > $cdsFileName
+      #  echo Unzipping $zipFn to $cdsFileName
+    #fi
 
-    rm $zipFn
+   # rm $zipFn
     echo ________________________Done with cds download__________________________
 
     cd ../
