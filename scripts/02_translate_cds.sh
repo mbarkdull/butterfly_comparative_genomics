@@ -5,7 +5,7 @@
   # I could do this by including another column in the input url file that says whether the CDS are based on gene predictions; however, this puts additional work up-front on the researcher.
   # I think that I could alternatively do this by simply running TransDecoder on all of the files, then noting which species don't have the appropriate output and re-running DataTranslating on just those files.
 
-mkdir 02_translated_cds_files
+mkdir ./02_translated_cds_files/
 
 #make a list of cds file names 
 while read -r line;

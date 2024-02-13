@@ -7,8 +7,8 @@ while read -r line;
 do
 	export cdsFileName=$line
 	# Copy the CDS
-	cp /local/workdir/noah/JC/butterfly_comparative_genomics/butterfly_comparative_genomics/01_RawCDSFiles/$cdsFileName ./02_translated_cds_files
-	cd ./02_translated_cds_files
+	cp ./01_RawCDSFiles/$cdsFileName ./02_translated_cds_files
+	cd ./02_translated_cds_files/
 	export speciesCode=`echo "$line" | awk -F'_' '{print $1}'`
 	mkdir ./$speciesCode/
 	cd ./$speciesCode/
