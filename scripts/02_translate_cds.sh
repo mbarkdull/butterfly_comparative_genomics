@@ -7,14 +7,45 @@
 
 mkdir 02_translated_cds_files
 
+#make a list of cds file names 
 while read -r line;
 do
 	export speciesCode=`echo "$line" | awk -F',' '{print $2}'`
 	export cdsFileName=$speciesCode'_cds.fasta'
-	cp ./01_RawCDSFiles/$cdsFileName 02_translated_cds_files
-	cd 02_translated_cds_files
-	# Now we can run Transdecoder on the cleaned file:
-    echo "First, attempting TransDecoder run on $cdsFileName"
-    /programs/TransDecoder-v5.5.0/TransDecoder.LongOrfs -t $cdsFileName
-    /programs/TransDecoder-v5.5.0/TransDecoder.Predict -t $cdsFileName --single_best_only
+	echo $cdsFileName >> cdsFileList.txt
 done < $1
+
+# Split the input file list into a user-specified number of chunks:
+export chunkNumber="l/"$2
+split --number=$chunkNumber --additional-suffix=.txt -d cdsFileList.txt "cdsFileList"
+# Remove any chunks that are empty:
+find . -name 'cdsFileList*' -type f -empty -delete
+# Create a file listing those chunks:
+ls "cdsFileList"* > "cdsChunkList.txt"
+
+# While the list of chunks is not empty,
+while [ -s "cdsChunkList.txt" ]
+do
+  # Run transdecoder, meaning:
+  # Create a holder for the chunks:
+  export batchSize=$2
+  export currentBatch=0
+  export batchFileNames=()
+  # Then, while reading each line in our list of chunked files,
+  while read -r line;
+  do
+    export batchFile=$line
+    batchFileNames+=($batchFile)
+    if [ ${#batchFileNames[@]} -eq $batchSize ]; then
+      for batchFile in ${batchFileNames[@]} ; do
+        #sleep 10 &
+        ./Scripts/02_01_single_transdecoder_run.sh $batchFile  &
+      done
+      wait
+      batchFileNames=()
+    fi
+  done < "cdsChunkList.txt"
+
+
+
+
