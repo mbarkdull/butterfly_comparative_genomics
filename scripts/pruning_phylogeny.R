@@ -143,3 +143,11 @@ prunedTree <- treeio::rename_taxa(tree = prunedTree,
 ggtree(prunedTree) +
   geom_tiplab() +
   xlim(c(0, 0.5))
+
+# Check that all species are present and correct:
+prunedTree[["tip.label"]] %in% focalTaxa$speciesUnderscore
+
+# Save the tree in Newick format:
+dir.create("./speciesTree/")
+ape::write.tree(prunedTree, 
+                file = "./speciesTree/focalSpeciesTree.txt")
