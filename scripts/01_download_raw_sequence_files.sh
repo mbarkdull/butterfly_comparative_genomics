@@ -85,7 +85,7 @@
 
   done < $1
 
-  find ./01_RawCDSFiles -type f -size 0b -delete
-  find ./02_AAFiles -type f -size 0b -delete
+  find ./01_RawCDSFiles -type f -size 0 -delete
+  find ./02_AAFiles -type f -size 0 -delete
 
   # The command to run this script is `./DataDownload [input file]`. This will read in the input urls file and download the transcripts and proteins for each species.
