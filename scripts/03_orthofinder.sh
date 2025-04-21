@@ -6,25 +6,28 @@
 mkdir ./03_OrthoFinder/
 mkdir ./03_OrthoFinder/fasta
 
-for directory in ./02_translated_cds_files/*/
+for file in ./02_AAFiles/*
 do
-  # Remove the trailing "/"
-  export directory=${directory%*/}
-  # Extract the species code by printing everything after the final "/"
-  export sampleCode="${directory##*/}"
-  echo This is the sample code: $sampleCode
+  # Extract the species code:
+  export speciesCode=`echo "$file" | awk -F'_' '{print $2}' | awk -F'/' '{print $2}'`
+  echo This is the species code: $speciesCode
   # Copy the proteins file into the orthofinder directory:
-  cp $directory"/"$sampleCode"_cds.fasta.transdecoder.pep" ./03_OrthoFinder/fasta/
-  mv ./03_OrthoFinder/fasta/$sampleCode"_cds.fasta.transdecoder.pep" ./03_OrthoFinder/fasta/$sampleCode"_proteins.fasta"
+  cp ./02_AAFiles/$speciesCode"_aa.fasta" ./03_OrthoFinder/fasta/
   # Append a species code to each gene name:
-  export samplePrefix=$sampleCode"_"
-  sed -i "s/>/>$samplePrefix/g" "./03_OrthoFinder/fasta/"$sampleCode"_proteins.fasta"
+  export samplePrefix=$speciesCode"_"
+  sed -i .backup "s/>/>$samplePrefix/g" "./03_OrthoFinder/fasta/"$speciesCode"_aa.fasta"
+  rm ./03_OrthoFinder/fasta/*.backup
+  # One of the species also has periods (.) for some reason in the gene sequences, so get rid of these:
+  sed -i .backup '/^>/! s/\./-/g' "./03_OrthoFinder/fasta/"$speciesCode"_aa.fasta"
+  rm ./03_OrthoFinder/fasta/*.backup
 done
 
-mv ./llun_proteins.fasta ./03_OrthoFinder/fasta/llun_proteins.fasta
+# Download the Bombyx mori proteins as an outgroup:
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/030/269/925/GCF_030269925.1_ASM3026992v2/GCF_030269925.1_ASM3026992v2_protein.faa.gz -O bomo.gz
+gunzip -c bomo.gz > ./03_OrthoFinder/fasta/bomo_aa.fasta
 
-mkdir -p /workdir/$USER/tmp
-source /programs/miniconda3/bin/activate orthofinder-2.5.4
+mkdir -p ./tmp
+#source /programs/anaconda3/bin/activate orthofinder-3.0.1b1
 
 # Options:
   # -S: sequence search option; here using diamond.
@@ -41,3 +44,4 @@ tar -xzvf OrthoFinder_source.tar.gz
 chmod u+rwx OrthoFinder_source/tools/create_files_for_hogs.py
 export resultsDate="$(date +'%b%d')"
 OrthoFinder_source/tools/create_files_for_hogs.py ./fasta/OrthoFinder/Results_$resultsDate/ ./fasta/OrthoFinder/Results_$resultsDate/ N1
+
