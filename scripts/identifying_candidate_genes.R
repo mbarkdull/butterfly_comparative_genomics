@@ -39,15 +39,17 @@ ncbiIDs <- base::setdiff(ncbiIDs,
 dir.create("./candidate_genes/")
 
 # Write a function to download a single protein sequence:
-gettingProteinSequence <- function(ID) {
-  # Link the gene ID to a protein ID:
-  geneToProtein <- entrez_link(dbfrom = 'gene', 
+gettingGeneSequence <- function(ID) {
+  # Link the gene ID to a nucleotide sequence ID:
+  geneToCDS <- entrez_link(dbfrom = 'gene', 
                                id = ID, 
-                               db = 'protein')
-  proteinID <- geneToProtein[["links"]][["gene_protein_refseq"]][[1]]
-  # Get that protein sequence as a fasta:
-  entrez_fetch(db = "protein", 
-               id = proteinID, 
+                               db = 'nuccore')
+  cdsID <- geneToCDS[["links"]][["gene_nuccore_refseqrna"]][[1]]
+  
+  
+# Get the gene sequence as a fasta:
+  entrez_fetch(db = "nuccore", 
+               id = cdsID, 
                rettype = "fasta") %>%
     write(file = paste("./candidate_genes/",
                        ID,
@@ -56,37 +58,38 @@ gettingProteinSequence <- function(ID) {
 }
 
 # Make a safe version with possibly:
-possiblyGettingProteinSequence <- purrr::possibly(gettingProteinSequence,
+possiblygettingGeneSequence <- purrr::possibly(gettingGeneSequence,
                                                   otherwise = "Error")
 # Download the list of protein sequences:
 purrr::map(ncbiIDs,
-           possiblyGettingProteinSequence)
+           possiblygettingGeneSequence)
 
-#### Combine all the proteomes against which we'll BLAST ####
+#### Combine all the genomes against which we'll BLAST ####
 # Use an if-else statement so this step doesn't have to be repeated:
-if (file.exists("allProteomes.fasta")) {
+if (file.exists("allGenomes.fasta")) {
   print("The file exists!")
 } else {
   print("The file does not exist.")
-  # Construct a list of the proteomes:
-  allProteomes <- list.files("03_OrthoFinder/fasta",
+  # Construct a list of the genomes:
+  allGenomes <- list.files("03_OrthoFinder/fasta",
                              full.names = TRUE) %>% 
-    str_subset(pattern = "_aa.fasta") %>% 
+    str_subset(pattern = "_cds.fasta") %>% 
     str_subset(pattern = "bomo",
                negate = TRUE)
   
-  # Read in all the proteomes and combine them:
-  proteomes <- purrr::map(allProteomes,
+  # Read in all the genomes and combine them:
+  genomes <- purrr::map(allGenomes,
                           phylotools::read.fasta)
-  proteomes <- as.data.frame(do.call(rbind, proteomes)) 
-  phylotools::dat2fasta(proteomes,
-                        outfile = "allProteomes.fasta")
-  rm(proteomes)
+  genomes <- as.data.frame(do.call(rbind, genomes)) 
+  phylotools::dat2fasta(genomes,
+                        outfile = "allGenomes.fasta")
+  rm(genomes)
 }
 
 #### BLAST the candidates against my proteomes ####
 # Construct the database:
-makeblastdb(file = './allProteomes.fasta', dbtype = "prot")
+makeblastdb(file = './allGenomes.fasta', 
+            dbtype = "nucl")
 
 # Process the orthogroups so they can be identified:
 # Read in the orthogroups file:
@@ -110,12 +113,12 @@ orthogroupMembers$HOG <- str_split_i(orthogroupMembers$HOG,
 # Write a function to blast candidate genes against my genomes and identify the matching orthogroup:
 fetchingOrthogroups <- function(i) {
   # Read in my query sequence:
-  querySequence <- readAAStringSet(i, 
+  querySequence <- readDNAStringSet(i, 
                                    format = 'fasta')
   
   # Prep the search:
-  blastSearch <- blast(db = './allProteomes.fasta', 
-                       type = 'blastp')
+  blastSearch <- blast(db = './allGenomes.fasta', 
+                       type = 'blastn')
   
   # Run the search:
   searchResults <- predict(blastSearch, 
@@ -401,5 +404,11 @@ traits <- c("border_oceli_spots",
 purrr::map(traits,
            possiblyLabellingForSpecificTrait)
 
+#### Run BUSTED-PH ####
 
+hyphy ../hyphy-analyses/BUSTED-PH/BUSTED-PH.bf --alignment ./04_aligned_hogs/HOG0007292_alignment.fasta --tree ./06_labelledPhylogenies/tails/labelled_HOG0007292_tree.txt --srv Yes --branches Foreground
+
+
+
+#### Run RELAX ####
 
