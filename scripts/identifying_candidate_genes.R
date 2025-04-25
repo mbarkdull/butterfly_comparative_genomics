@@ -17,11 +17,8 @@ geneFiles <- dir("candidate_genes",
                  recursive = TRUE, 
                  full.names = TRUE)
 
-# List the ones that are empty:
-emptyGeneFiles <- geneFiles[file.info(geneFiles)[["size"]]==0]
-
 # Remove empty files
-unlink(emptyGeneFiles, 
+unlink(geneFiles[file.info(geneFiles)[["size"]]==0], 
        recursive = TRUE, 
        force = FALSE)
 
@@ -93,7 +90,7 @@ makeblastdb(file = './allGenomes.fasta',
 
 # Process the orthogroups so they can be identified:
 # Read in the orthogroups file:
-orthogroupMembers <- read_delim(file = "./03_OrthoFinder/fasta/OrthoFinder/Results_Apr15/Phylogenetic_Hierarchical_Orthogroups/N1.tsv", 
+orthogroupMembers <- read_delim(file = "./03_OrthoFinder/fasta/OrthoFinder/Results_Apr22/Phylogenetic_Hierarchical_Orthogroups/N1.tsv", 
                                 col_names = TRUE,
                                 delim = "\t") %>%
   dplyr::select(-c("OG",
@@ -214,17 +211,57 @@ allResults <- read_delim(file = "./candidate_genes/blastSummary.csv") %>%
   distinct()
 
 # Now we have the list of orthogroups that we want to analyze. 
-#### Need to get alignments with MAFFT: ####
-dir.create("./04_aligned_hogs")
+
+#### Now identify corresponding amino acid sequences: ####
+orthogroupNumber <- "OG0020100"
+dir.create("./04_amino_acid_orthogroups")
+
+getAminoAcidFasta <- function(orthogroupNumber) {
+  testOrthogroup <- phylotools::read.fasta(file = paste("./03_OrthoFinder/fasta/OrthoFinder/Results_Apr22/Orthogroup_Sequences/",
+                                                        orthogroupNumber,
+                                                        ".fa",
+                                                        sep = ""))
+  testOrthogroup$originalName <- str_split_i(testOrthogroup$seq.name,
+                                             pattern = "_",
+                                             i = 2)
+  
+  allProteins <- list.files("./02_AAFiles/",
+                            full.names = TRUE)
+  allProteins  <- purrr::map(allProteins,
+                             phylotools::read.fasta)
+  allProteins <- as.data.frame(do.call(rbind, allProteins)) 
+  
+  findGene <- function(geneName) {
+    gene <- filter(allProteins,
+                   grepl(geneName, seq.name))
+    return(gene)
+  }
+  
+  possiblyFindGene <- purrr::possibly(findGene,
+                                      "error")
+  
+  genes <- purrr::map(testOrthogroup$originalName,
+                      possiblyFindGene)
+  genes <- as.data.frame(do.call(rbind, genes)) 
+  
+  phylotools::dat2fasta(genes,
+                        outfile = paste("./04_amino_acid_orthogroups/",
+                                        orthogroupNumber,
+                                        "_aa.fasta",
+                                        sep = ""))
+}
+
+
+#### Need to get amino acid alignments with MAFFT: ####
+dir.create("./05_aligned_amino_acids")
 
 alignHOGS <- function(i) {
-  pathToHOGs <- "03_OrthoFinder/fasta/OrthoFinder/Results_Apr15/N1/HOG_Sequences/"
+  pathToHOGs <- "./04_amino_acid_orthogroups/"
   HOGfile <- paste(pathToHOGs,
-                   "N1.",
-                   i,
-                   ".fa",
+                   orthogroupNumber,
+                   "_aa.fasta",
                    sep = "")
-  outputFile <- paste("./04_aligned_hogs/",
+  outputFile <- paste("./05_aligned_amino_acids/",
                       i,
                       "_alignment.fasta",
                       sep = "")
@@ -247,16 +284,18 @@ possiblyAlignHOGS <- purrr::possibly(alignHOGS,
 purrr::map(allResults$V1,
            possiblyAlignHOGS)
 
+#### Then generate codon-aware CDS alignments with pal2nal: ####
+dir.create("./06_pal2nal_alignments/")
 
 #### And gene trees with FastTree: ####
-dir.create("./05_hog_trees/")
+dir.create("./07_hog_trees/")
 
 hogTrees <- function(i) {
-  alignedHOGfile <- paste("./04_aligned_hogs/",
+  alignedHOGfile <- paste("./05_aligned_amino_acids/",
                           i,
                           "_alignment.fasta",
                           sep = "")
-  outputFile <- paste("./05_hog_trees/",
+  outputFile <- paste("./07_hog_trees/",
                       i,
                       "_tree.txt",
                       sep = "")
@@ -291,17 +330,17 @@ phenotypes <- read_sheet("https://docs.google.com/spreadsheets/d/166mvT3i85SJO25
            "venous_striping"))
 
 # Create an output directory:
-dir.create("./06_labelledPhylogenies/")
+dir.create("./08_labelledPhylogenies/")
 
 # List all of the tree files:
-orthofinderTreeFiles <- list.files(path = "./05_hog_trees",
+orthofinderTreeFiles <- list.files(path = "./07_hog_trees",
                                    full.names = TRUE)
 
 # Label trees for each trait:
 labellingForSpecificTrait <- function(trait) {
   trait <- sym(trait)
   # Create an output folder for this trait:
-  dir.create(paste("./06_labelledPhylogenies/",
+  dir.create(paste("./08_labelledPhylogenies/",
                    trait,
                    "/",
                    sep = ""))
@@ -319,7 +358,7 @@ labellingForSpecificTrait <- function(trait) {
                               pattern = "_",
                               i = 1)
     # Copy the unlabelled tree to the output folder; we'll be editing this tree three times. 
-    treePaste <- paste("./06_labelledPhylogenies/",
+    treePaste <- paste("./08_labelledPhylogenies/",
                        trait,
                        "/labelled_",
                        orthogroup,
@@ -329,7 +368,7 @@ labellingForSpecificTrait <- function(trait) {
               to = treePaste)
     
     # Read in a single tree and get the tip labels of that tree:
-    text <- readr::read_file(paste("./06_labelledPhylogenies/",
+    text <- readr::read_file(paste("./08_labelledPhylogenies/",
                                    trait,
                                    "/labelled_",
                                    orthogroup,
@@ -363,13 +402,13 @@ labellingForSpecificTrait <- function(trait) {
                 sep = ""))
     
     # Run the Hyphy labelling script:
-    hyphyCommand <- paste("/opt/anaconda3/envs/bioinformatics/bin/hyphy ../hyphy-analyses/LabelTrees/label-tree.bf --tree ./06_labelledPhylogenies/",
+    hyphyCommand <- paste("/opt/anaconda3/envs/bioinformatics/bin/hyphy ../hyphy-analyses/LabelTrees/label-tree.bf --tree ./08_labelledPhylogenies/",
                           trait,
                           "/labelled_",
                           orthogroup,
                           "_tree.txt --list tipsToLabel_",
                           orthogroup,
-                          "_tree.txt --output ./06_labelledPhylogenies/",
+                          "_tree.txt --output ./08_labelledPhylogenies/",
                           trait,
                           "/labelled_",
                           orthogroup,
@@ -406,7 +445,7 @@ purrr::map(traits,
 
 #### Run BUSTED-PH ####
 
-hyphy ../hyphy-analyses/BUSTED-PH/BUSTED-PH.bf --alignment ./04_aligned_hogs/HOG0007292_alignment.fasta --tree ./06_labelledPhylogenies/tails/labelled_HOG0007292_tree.txt --srv Yes --branches Foreground
+hyphy ../hyphy-analyses/BUSTED-PH/BUSTED-PH.bf --alignment ./06_pal2nal_alignments/HOG0007292_alignment.fasta --tree ./08_labelledPhylogenies/tails/labelled_HOG0007292_tree.txt --srv Yes --branches Foreground
 
 
 
