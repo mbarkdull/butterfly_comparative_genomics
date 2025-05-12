@@ -1,9 +1,11 @@
+#!/usr/local/bin/Rscript
+
 library(tidyverse)
 library(googlesheets4)
 library(splitstackshape) 
 library(furrr)
 
-
+# Set up future/furrr:
 future::plan(multisession)
 options(future.globals.maxSize= +Inf)
 
