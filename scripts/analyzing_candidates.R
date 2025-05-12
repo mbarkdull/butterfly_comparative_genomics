@@ -832,7 +832,13 @@ bustedPhSingleTrait <- function(trait) {
                             outputFile,
                             sep = "")
       cat(hyphyCommand)
+      write(paste("starting", trait, "and", orthogroup),
+            file = "bustedph_progress.txt",
+            append = TRUE)
       system(hyphyCommand)
+      write(paste("*****Finished", trait, "and", orthogroup),
+            file = "bustedph_progress.txt",
+            append = TRUE)
     } 
   }
   
