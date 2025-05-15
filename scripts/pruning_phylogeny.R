@@ -11,6 +11,10 @@ focalTaxa$speciesUnderscore <- gsub(pattern = " ",
                                     replacement = "_",
                                     focalTaxa$species)
 
+# Filter out species that we are no longer including:
+focalTaxa <- focalTaxa %>%
+  filter(!(abbreviation %in% c('cace','hela','heas', NA)))
+
 # Read in phylogeny from Kawahara et al. 2023:
 # This particular file is the one they use in their HISSE/BISSE analyses:
 butterflyTree <- read.tree("./kawahara2023/Data.S21.MLtrees/tree7_AA154partitions_renamed.tre")
@@ -135,6 +139,9 @@ allMatches$index <- gsub(pattern = "_1",
 allMatches$speciesNameInPrunedTree <- paste(allMatches$speciesInTree,
                                             allMatches$index,
                                             sep = "")
+allMatches <- left_join(allMatches,
+                        focalTaxa,
+                        by = c("originalSpecies" = "speciesUnderscore"))
 # Do the renaming:
 prunedTree <- treeio::rename_taxa(tree = prunedTree,
                             data = allMatches,
@@ -146,8 +153,24 @@ ggtree(prunedTree) +
 
 # Check that all species are present and correct:
 prunedTree[["tip.label"]] %in% focalTaxa$speciesUnderscore
+focalTaxa$speciesUnderscore %in% prunedTree[["tip.label"]]
 
 # Save the tree in Newick format:
 dir.create("./speciesTree/")
 ape::write.tree(prunedTree, 
-                file = "./speciesTree/focalSpeciesTree.txt")
+                file = "./speciesTree/focalSpeciesTree_fullNames.txt")
+
+# Get a tree with species abbreviations at the tips, for progressivecactus:
+# Do the renaming:
+allMatches$fileName <- paste(allMatches$abbreviation,
+                             "_wgs.fasta",
+                             sep = "")
+prunedTree <- treeio::rename_taxa(tree = prunedTree,
+                                  data = allMatches,
+                                  key = originalSpecies,
+                                  value = fileName)
+ggtree(prunedTree) +
+  geom_tiplab() +
+  xlim(c(0, 0.5))
+ape::write.tree(prunedTree, 
+                file = "./speciesTree/focalSpeciesTree_wgsFiles.txt")
