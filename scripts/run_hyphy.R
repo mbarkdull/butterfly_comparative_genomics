@@ -6,8 +6,8 @@ library(splitstackshape)
 library(furrr)
 
 # Set up future/furrr:
-future::plan(multisession)
-options(future.globals.maxSize= +Inf)
+#future::plan(multisession)
+#options(future.globals.maxSize= +Inf)
 
 #### Run BUSTED-PH ####
 dir.create("./09_bustedph/")
@@ -97,6 +97,6 @@ traits <- c("border_oceli_spots",
             "tails",
             "venous_striping")
 
-furrr::future_map(traits,
-                  possiblyBustedPhSingleTrait)
+purrr::map(traits,
+           possiblyBustedPhSingleTrait)
 
